@@ -179,6 +179,7 @@ var ServiceResponse = (function () {
                             _this.errorDetails.Add(name, value[key]);
                         }
                     });
+                    break;
                 case XmlElementNames_1.XmlElementNames.FieldURI:
                     this.errorProperties.push(ServiceObjectSchema_1.ServiceObjectSchema.FindPropertyDefinition(jsObject[key][XmlAttributeNames_1.XmlAttributeNames.FieldURI]));
                     break;
