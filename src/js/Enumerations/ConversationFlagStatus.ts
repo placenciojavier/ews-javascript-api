@@ -1,5 +1,0 @@
-export enum ConversationFlagStatus {
-    NotFlagged = 0,
-    Flagged = 1,
-    Complete = 2
-}

@@ -206,15 +206,6 @@ import moment = require('moment-timezone');
 }
  module EnumHelper {
     function HasFlag(flags: number, checkFlag: number): boolean;
-    /**
-     * Writes "," separated values from Enumertion anf enum Flags
-     *
-     * @export
-     * @param {*} enumObj The Enumeration Object itself, for example 'ExchangeVersion' as the parameter Value.
-     * @param {number} checkFlag Flag value(s) to convert to string
-     * @param {boolean} [includeZero=false] include the default 0 value in the string, usually false
-     * @returns {string} returns the coma "," separated string representation of Flags
-     */
     function ToString(enumObj: any, checkFlag: number, includeZero?: boolean): string;
 }
  module ArrayHelper {
@@ -225,7 +216,7 @@ import moment = require('moment-timezone');
     function OfType<T, U>(array: Array<U>, comparer: (item: U) => boolean): T[];
     /**dirty calculation of max dimension, will return more than one if array contains any array element in first testElementCount items */
     function Rank(array: any[], testElementCount?: number): number;
-    function isArray<T>(obj: any): obj is T[];
+    function isArray(obj: any): obj is [];
 }
  class TypeSystem {
     static GetProperties(obj: any): string[];
@@ -3995,164 +3986,41 @@ import 'reflect-metadata';
  */
  class UrlEntityCollection extends ComplexPropertyCollection<UrlEntity> {
 }
-/**
- * Represents a user configuration's Dictionary property.
- *
- * @sealed
- */
+
  class UserConfigurationDictionary extends ComplexProperty {
-    /**
-     * required before initializing new UserConfigurationDictionary
-     */
-    static _dictionaryKeyPicker: (key) => string;
+    Item: any;
+    Count: number;
+    IsDirty: boolean;
 
 
-    /**
-     * Gets the number of elements in the user configuration dictionary.
-     */
-    readonly Count: number;
-    /**
-     * Gets or sets the element with the specified key.
-     *
-     * @param   {string | DateTime | boolean | number}                          key   The key of the element to get or set.
-     * @return  {DateTime | string | number | boolean | string[] | number[]}    The element with the specified key.
-     */
-    _getItem(key: string | DateTime | boolean | number): DateTime | string | number | boolean | string[] | number[];
-    /**
-     * Gets or sets the element with the specified key.
-     *
-     * @param   {string | DateTime | boolean | number}                          key     The key of the element to get or set.
-     * @param  {DateTime | string | number | boolean | string[] | number[]}     value    The element value to update at specified key.
-     */
-    _setItem(key: string | DateTime | boolean | number, value: DateTime | string | number | boolean | string[] | number[]): void;
-    /**
-     * Adds an element with the provided key and value to the user configuration dictionary.
-     *
-     * @param   {string | DateTime | boolean | number}                          key     The object to use as the key of the element to add. **Restrict usage of byteArray or complex type for key, consider using string and number only**.
-     * @param   {DateTime | string | number | boolean | string[] | number[]}    value   The object to use as the value of the element to add.
-     */
-    Add(key: string | DateTime | boolean | number, value: DateTime | string | number | boolean | string[] | number[]): void;
-    /**
-     * Removes all items from the user configuration dictionary.
-     */
-    Clear(): void;
-    /**
-     * Constructs a dictionary object (key or entry value) from the specified type and string list.
-     *
-     * @param   {UserConfigurationDictionaryObjectType}     type      Object type to construct.
-     * @param   {string[]}                                  value     Value of the dictionary object as a string list
-     * @param   {ExchangeService}                           service   The service.
-     * @return  {any}                                       Dictionary object.
-     */
-
-    /**
-     * Determines whether the user configuration dictionary contains an element with the specified key.
-     *
-     * @param   {any}   key     The key to locate in the user configuration dictionary.
-     * @return  {boolean}       true if the user configuration dictionary contains an element with the key; otherwise false.
-     */
+    Add(key: any, value: any): any;
+    Changed(): any;
+    Clear(): any;
+    ConstructObject(type: UserConfigurationDictionaryObjectType, value: string[], service: ExchangeService): any;
     ContainsKey(key: any): boolean;
-    /**
-     * Gets the dictionary object.
-     *
-     * @param   {any}               jsonObject   The json object.
-     * @param   {ExchangeService}   service      The service.
-     * @return  {any}               the dictionary object
-     */
-
-    GetEnumerator(): Dictionary<any, any>;
-    /**
-     * Gets the type of the object.
-     *
-     * @param   {string}   type   The type.
-     * @return  {UserConfigurationDictionaryObjectType}     UserConfigurationDictionaryObjectType for the string value
-     */
-
-    /**
-     * Gets the object value.
-     *
-     * @param   {any[]}   valueArray   The value array.
-     * @return  {string[]}  string array from object Array
-     */
-
-    /**
-     * Gets the type code.
-     *
-     * @param   {ExchangeServiceBase}                                   service                The service.
-     * @param   {any}                                                   dictionaryObject       The dictionary object.
-     * @param   {IRefParam<UserConfigurationDictionaryObjectType>}      dictionaryObjectType   Type of the dictionary object.
-     * @param   {IRefParam<string>}                                     valueAsString          The value as string.
-     */
-
-    /**
-     * Removes the element with the specified key from the user configuration dictionary.
-     *
-     * @param   {key}   key     The key of the element to remove.
-     * @return  {boolean}       true if the element is successfully removed; otherwise false.
-     */
+    CreateFromJsonCollection(jsonCollection: any, service: ExchangeService): any;
+    GetDictionaryObject(reader: EwsServiceXmlReader): any;
+    GetEnumerator(): any;
+    GetJsonObject(dictionaryObject: any, service: ExchangeService): JsonObject;
+    GetObjectType(reader: EwsServiceXmlReader): UserConfigurationDictionaryObjectType;
+    GetObjectValue(valueArray: any): string[];
+    GetTypeCode(service: ExchangeServiceBase, dictionaryObject: any, dictionaryObjectType: any, valueAsString: any): any;
+    InternalToJson(service: ExchangeService): any;
+    LoadEntry(reader: EwsServiceXmlReader): any;
+    LoadFromXmlJsObject(jsObject: any, service: ExchangeService): void;
     Remove(key: any): boolean;
-    /**
-     * Gets the value associated with the specified key.
-     *
-     * @param   {any}   key     The key whose value to get.
-     * @param   {any}   value   When this method returns, the value associated with the specified key, if the key is found; otherwise, null.
-     * @return  {boolean}       true if the user configuration dictionary contains the key; otherwise false.
-     */
-    TryGetValue(key: any, value: IOutParam<any>): boolean;
-    /**
-     * Validate the array object.
-     *
-     * @param   {Array<any>}   dictionaryObjectAsArray   Object to validate
-     */
-
-    /**
-     * Validates the specified key and value.
-     *
-     * @param   {any}   key     The dictionary entry key.
-     * @param   {any}   value   The dictionary entry value.
-     */
-
-    /**
-     * Validates the dictionary object (key or entry value).
-     *
-     * @param   {any}   dictionaryObject   Object to validate.
-     */
-
-    /**
-     * Validates the dictionary object type.
-     *
-     * @param   {any}   type   Type to validate.
-     */
-
-    /**
-     * Writes a dictionary entry type to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}                       writer                 The writer.
-     * @param   {UserConfigurationDictionaryObjectType}     dictionaryObjectType   Type to write.
-     */
-
-    /**
-     * Writes a dictionary entry value to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer   The writer.
-     * @param   {string}                value    Value to write.
-     */
-
-    /**
-     * Writes a dictionary object (key or value) to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer             The writer.
-     * @param   {string}                xmlElementName     The Xml element name.
-     * @param   {any}                   dictionaryObject   The object to write.
-     */
-
-    /**
-     * Writes a dictionary Object's value to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer             The writer.
-     * @param   {any}                   dictionaryObject   The dictionary object to write.
-     */
-
+    TryGetValue(key: any, value: any): boolean;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): boolean;
+    UpdateFromJsonCollection(jsonCollection: any, service: ExchangeService): any;
+    ValidateArrayObject(dictionaryObjectAsArray: Array<any>): any;
+    ValidateEntry(key: any, value: any): any;
+    ValidateObject(dictionaryObject: any): any;
+    ValidateObjectType(type: any): any;
+    WriteElementsToXml(writer: EwsServiceXmlWriter): any;
+    WriteEntryTypeToXml(writer: EwsServiceXmlWriter, dictionaryObjectType: UserConfigurationDictionaryObjectType): any;
+    WriteEntryValueToXml(writer: EwsServiceXmlWriter, value: string): any;
+    WriteObjectToXml(writer: EwsServiceXmlWriter, xmlElementName: string, dictionaryObject: any): any;
+    WriteObjectValueToXml(writer: EwsServiceXmlWriter, dictionaryObject: any): any;
 }
  class UserId extends ComplexProperty {
     SID: string;
@@ -4191,6 +4059,118 @@ import 'reflect-metadata';
 
     LoadFromJson(jsonProperty: JsonObject, service: ExchangeService): any;
     ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): boolean;
+}
+
+ class ClientCertificateCredentials extends ExchangeCredentials {
+    ClientCertificates: any;
+
+    PrepareWebRequest(request: any): any;
+}
+ class ExchangeCredentials {
+    static WsSecurityPathSuffix: string;
+    UserName: string;
+    /** Hiding password field from console.log */
+    getPassword: () => string;
+    setPassword: (value: string) => void;
+    Password: string;
+    constructor();
+    constructor(userName: string, password: string);
+    AdjustUrl(url: Uri): Uri;
+    EmitExtraSoapHeaderNamespaceAliases(writer: any): void;
+    static GetUriWithoutSuffix(url: Uri): string;
+    PrepareWebRequest(request: IXHROptions): void;
+    SerializeExtraSoapHeaders(writer: any, webMethodName: string): void;
+}
+ class OAuthCredentials extends ExchangeCredentials {
+
+
+
+
+    constructor(token: string);
+    constructor(token: string, verbatim: boolean);
+    PrepareWebRequest(request: IXHROptions): void;
+}
+ class PartnerTokenCredentials extends WSSecurityBasedCredentials {
+
+    NeedSignature: boolean;
+
+    AdjustUrl(url: Uri): Uri;
+    Sign(memoryStream: any): any;
+}
+
+ class TokenCredentials extends WSSecurityBasedCredentials {
+}
+ class WebCredentials extends ExchangeCredentials {
+    Credentials: any;
+
+    AdjustUrl(url: Uri): Uri;
+}
+ class WindowsLiveCredentials extends WSSecurityBasedCredentials {
+    static XmlEncNamespace: string;
+    static WindowsLiveSoapNamespacePrefix: string;
+    static RequestSecurityTokenResponseCollectionElementName: string;
+    static RequestSecurityTokenResponseElementName: string;
+    static EncryptedDataElementName: string;
+    static PpElementName: string;
+    static ReqstatusElementName: string;
+    static SuccessfulReqstatus: string;
+    static XmlSignatureReference: string;
+    TraceEnabled: boolean;
+    TraceListener: ITraceListener;
+    WindowsLiveUrl: Uri;
+    IsAuthenticated: boolean;
+
+
+
+
+
+
+    static DefaultWindowsLiveUrl: Uri;
+    EmitTokenRequest(uriForTokenEndpointReference: Uri): any;
+    MakeTokenRequestToWindowsLive(uriForTokenEndpointReference: Uri): any;
+    ParseWindowsLiveRSTResponseBody(rstResponse: EwsXmlReader): any;
+    ProcessTokenResponse(response: any): any;
+    ReadWindowsLiveRSTResponseHeaders(rstResponse: EwsXmlReader): any;
+    TraceResponse(response: any, memoryStream: any): any;
+    TraceWebException(e: any): any;
+}
+ class WSSecurityBasedCredentials extends ExchangeCredentials {
+    static WsAddressingHeadersFormat: string;
+    static WsSecurityHeaderFormat: string;
+    static WsuTimeStampFormat: string;
+    SecurityToken: string;
+    EwsUrl: Uri;
+    static NamespaceManager: any;
+
+
+
+
+    AdjustUrl(url: Uri): Uri;
+    EmitExtraSoapHeaderNamespaceAliases(writer: any): any;
+    PreAuthenticate(): any;
+    SerializeExtraSoapHeaders(writer: any, webMethodName: string): any;
+    SerializeWSAddressingHeaders(xmlWriter: any, webMethodName: string): any;
+    SerializeWSSecurityHeaders(xmlWriter: any): any;
+}
+ class WSSecurityUtilityIdSignedXml {
+
+
+
+
+    AddReference(xpath: string): any;
+    GetIdElement(document: any, idValue: string): any;
+    GetUniqueId(): string;
+}
+ class X509CertificateCredentials extends WSSecurityBasedCredentials {
+
+
+
+    NeedSignature: boolean;
+
+
+    AdjustUrl(url: Uri): Uri;
+    Sign(memoryStream: any): any;
+    ToString(): string;
 }
  class EwsLogging {
     static DebugLogEnabled: boolean;
@@ -5653,45 +5633,6 @@ export interface EnumVersionDelegate {
      */
     UpdateDelegates(mailbox: Mailbox, meetingRequestsDeliveryScope: MeetingRequestsDeliveryScope, delegateUsers: DelegateUser[]): IPromise<DelegateUserResponse[]>;
     /**
-     * Creates a UserConfiguration.
-     *
-     * @param   {UserConfiguration}   userConfiguration   The UserConfiguration.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    CreateUserConfiguration(userConfiguration: UserConfiguration): IPromise<void>;
-    /**
-     * Deletes a UserConfiguration.
-     *
-     * @param   {string}    name             Name of the UserConfiguration to retrieve.
-     * @param   {FolderId}  parentFolderId   Id of the folder containing the UserConfiguration.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    DeleteUserConfiguration(name: string, parentFolderId: FolderId): IPromise<void>;
-    /**
-     * Gets a UserConfiguration.
-     *
-     * @param   {string}                        name             Name of the UserConfiguration to retrieve.
-     * @param   {FolderId}                      parentFolderId   Id of the folder containing the UserConfiguration.
-     * @param   {UserConfigurationProperties}   properties       Properties to retrieve.
-     * @return  {IPromise<UserConfiguration>}   A UserConfiguration.
-     */
-    GetUserConfiguration(name: string, parentFolderId: FolderId, properties: UserConfigurationProperties): IPromise<UserConfiguration>;
-    /**
-     * Loads the properties of the specified userConfiguration.
-     *
-     * @param   {UserConfiguration}             userConfiguration   The userConfiguration containing properties to load.
-     * @param   {UserConfigurationProperties}   properties          Properties to retrieve.
-     * @return  {IPromise<void>}                :Promise.
-     */
-    LoadPropertiesForUserConfiguration(userConfiguration: UserConfiguration, properties: UserConfigurationProperties): IPromise<void>;
-    /**
-     * Updates a UserConfiguration.
-     *
-     * @param   {UserConfiguration}   userConfiguration   The UserConfiguration.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    UpdateUserConfiguration(userConfiguration: UserConfiguration): IPromise<void>;
-    /**
      * Retrieves the inbox rules of the specified user.
      *
      * @return  {IPromise<RuleCollection>}      A RuleCollection object containing the inbox rules of the specified user    :Promise.
@@ -5721,155 +5662,6 @@ export interface EnumVersionDelegate {
      * @return  {IPromise<void>}    Promise
      */
     UpdateInboxRules(operations: RuleOperation[], removeOutlookRuleBlob: boolean): IPromise<void>;
-    /**
-     * Create get non indexable item details request
-     *
-     * @param   {GetNonIndexableItemDetailsParameters}   parameters   Get non indexable item details parameters
-     * @return  {GetNonIndexableItemDetailsRequest}      GetNonIndexableItemDetails request
-     */
-
-    /**
-     * Create get non indexable item statistics request
-     *
-     * @param   {GetNonIndexableItemStatisticsParameters}   parameters   Get non indexable item statistics parameters
-     * @return  {GetNonIndexableItemStatisticsRequest}      Service response object
-     */
-
-    /**
-     * Creates SearchMailboxesRequest from SearchMailboxesParameters
-     *
-     * @param   {SearchMailboxesParameters}   searchParameters   search parameters
-     * @return  {SearchMailboxesRequest}      request object
-     */
-
-    /**
-     * Get dicovery search configuration
-     *
-     * @param   {string}    searchId                       Search Id
-     * @param   {boolean}   expandGroupMembership          True if want to expand group membership
-     * @param   {boolean}   inPlaceHoldConfigurationOnly   True if only want the inplacehold configuration
-     * @return  {IPromise<GetDiscoverySearchConfigurationResponse>}     Service response object    :Promise.
-     */
-    GetDiscoverySearchConfiguration(searchId: string, expandGroupMembership: boolean, inPlaceHoldConfigurationOnly: boolean): IPromise<GetDiscoverySearchConfigurationResponse>;
-    /**
-     * Get hold on mailboxes
-     *
-     * @param   {string}   holdId   Hold id
-     * @return  {IPromise<GetHoldOnMailboxesResponse>}      Service response object
-     */
-    GetHoldOnMailboxes(holdId: string): IPromise<GetHoldOnMailboxesResponse>;
-    /**
-     * Get non indexable item details
-     *
-     * @param   {string[]}  mailboxes           Array of mailbox legacy DN
-     * @return  {IPromise<GetNonIndexableItemDetailsResponse>}      Service response object :Promise.
-     */
-    GetNonIndexableItemDetails(mailboxes: string[]): IPromise<GetNonIndexableItemDetailsResponse>;
-    /**
-     * Get non indexable item details
-     *
-     * @param   {string[]}              mailboxes           Array of mailbox legacy DN
-     * @param   {number}                pageSize            The page size
-     * @param   {string}                pageItemReference   Page item reference
-     * @param   {SearchPageDirection}   pageDirection       Page direction
-     * @return  {IPromise<GetNonIndexableItemDetailsResponse>}      Service response object :Promise.
-     */
-    GetNonIndexableItemDetails(mailboxes: string[], pageSize: number, pageItemReference: string, pageDirection: SearchPageDirection): IPromise<GetNonIndexableItemDetailsResponse>;
-    /**
-     * Get non indexable item details
-     *
-     * @param   {GetNonIndexableItemDetailsParameters}   parameters   Get non indexable item details parameters
-     * @return  {IPromise<GetNonIndexableItemDetailsResponse>}        Service response object   :Promise.
-     */
-    GetNonIndexableItemDetails(parameters: GetNonIndexableItemDetailsParameters): IPromise<GetNonIndexableItemDetailsResponse>;
-    /**
-     * Get non indexable item statistics
-     *
-     * @param   {string[]}   mailboxes   Array of mailbox legacy DN
-     * @return  {IPromise<GetNonIndexableItemStatisticsResponse>}   Service response object :Promise.
-     */
-    GetNonIndexableItemStatistics(mailboxes: string[]): IPromise<GetNonIndexableItemStatisticsResponse>;
-    /**
-     * Get non indexable item statistics
-     *
-     * @param   {GetNonIndexableItemStatisticsParameters}   parameters   Get non indexable item statistics parameters
-     * @return  {IPromise<GetNonIndexableItemStatisticsResponse>}        Service response object :Promise.
-     */
-    GetNonIndexableItemStatistics(parameters: GetNonIndexableItemStatisticsParameters): IPromise<GetNonIndexableItemStatisticsResponse>;
-    /**
-     * Get searchable mailboxes
-     *
-     * @param   {string}    searchFilter            Search filter
-     * @param   {boolean}   expandGroupMembership   True if want to expand group membership
-     * @return  {IPromise<GetSearchableMailboxesResponse>}      Service response object :Promise
-     */
-    GetSearchableMailboxes(searchFilter: string, expandGroupMembership: boolean): IPromise<GetSearchableMailboxesResponse>;
-    /**
-     * Search mailboxes
-     *
-     * @param   {SearchMailboxesParameters}   searchParameters   Search mailboxes parameters
-     * @return  {IPromise<ServiceResponseCollection<SearchMailboxesResponse>>}      Collection of search mailboxes response object  :Promise.
-     */
-    SearchMailboxes(searchParameters: SearchMailboxesParameters): IPromise<ServiceResponseCollection<SearchMailboxesResponse>>;
-    /**
-     * Search mailboxes
-     *
-     * @param   {MailboxQuery[]}        mailboxQueries      Collection of query and mailboxes
-     * @param   {SearchResultType}      resultType          Search result type
-     * @return  {IPromise<ServiceResponseCollection<SearchMailboxesResponse>>}      Collection of search mailboxes response object  :Promise.
-     */
-    SearchMailboxes(mailboxQueries: MailboxQuery[], resultType: SearchResultType): IPromise<ServiceResponseCollection<SearchMailboxesResponse>>;
-    /**
-     * Search mailboxes
-     *
-     * @param   {MailboxQuery[]}        mailboxQueries      Collection of query and mailboxes
-     * @param   {SearchResultType}      resultType          Search result type
-     * @param   {string}                sortByProperty      Sort by property name
-     * @param   {SortDirection}         sortOrder           Sort order
-     * @param   {number}                pageSize            Page size
-     * @param   {SearchPageDirection}   pageDirection       Page navigation direction
-     * @param   {string}                pageItemReference   Item reference used for paging
-     * @return  {IPromise<ServiceResponseCollection<SearchMailboxesResponse>>}      Collection of search mailboxes response object  :Promise.
-     */
-    SearchMailboxes(mailboxQueries: MailboxQuery[], resultType: SearchResultType, sortByProperty: string, sortOrder: SortDirection, pageSize: number, pageDirection: SearchPageDirection, pageItemReference: string): IPromise<ServiceResponseCollection<SearchMailboxesResponse>>;
-    /**
-     * Set hold on mailboxes
-     *
-     * @param   {SetHoldOnMailboxesParameters}  parameters      Set hold parameters
-     * @return  {IPromise<SetHoldOnMailboxesResponse>}  Service response object :Promise.
-     */
-    SetHoldOnMailboxes(parameters: SetHoldOnMailboxesParameters): IPromise<SetHoldOnMailboxesResponse>;
-    /**
-     * Set hold on mailboxes
-     *
-     * @param   {string}        holdId          Hold id
-     * @param   {HoldAction}    actionType      Action type
-     * @param   {string}        query           Query string
-     * @param   {string[]}      mailboxes       Collection of mailboxes
-     * @return  {IPromise<SetHoldOnMailboxesResponse>}  Service response object :Promise.
-     */
-    SetHoldOnMailboxes(holdId: string, actionType: HoldAction, query: string, mailboxes: String[]): IPromise<SetHoldOnMailboxesResponse>;
-    /**
-     * Set hold on mailboxes
-     *
-     * @param   {string}        holdId                Hold id
-     * @param   {HoldAction}    actionType            Action type
-     * @param   {string}        query                 Query string
-     * @param   {string}        inPlaceHoldIdentity   in-place hold identity
-     * @return  {IPromise<SetHoldOnMailboxesResponse>}  Service response object :Promise.
-     */
-    SetHoldOnMailboxes(holdId: string, actionType: HoldAction, query: string, inPlaceHoldIdentity: string): IPromise<SetHoldOnMailboxesResponse>;
-    /**
-     * Set hold on mailboxes
-     *
-     * @param   {string}        holdId                Hold id
-     * @param   {HoldAction}    actionType            Action type
-     * @param   {string}        query                 Query string
-     * @param   {string}        inPlaceHoldIdentity   in-place hold identity
-     * @param   {string}        itemHoldPeriod        item hold period
-     * @return  {IPromise<SetHoldOnMailboxesResponse>}  Service response object :Promise.
-     */
-    SetHoldOnMailboxes(holdId: string, actionType: HoldAction, query: string, inPlaceHoldIdentity: string, itemHoldPeriod: string): IPromise<SetHoldOnMailboxesResponse>;
     /**
      * Get user retention policy tags.
      *
@@ -5989,6 +5781,10 @@ export interface EnumVersionDelegate {
      * @remarks Exception will be thrown for errors.
      */
     UninstallApp(id: string): IPromise<void>;
+    GetClientExtension(requestedExtensionIds: StringList, shouldReturnEnabledOnly: boolean, isUserScope: boolean, userId: string, userEnabledExtensionIds: StringList, userDisabledExtensionIds: StringList, isDebug: boolean): GetClientExtensionResponse;
+    SetClientExtension(actions: Function[]): any;
+    GetEncryptionConfiguration(): GetEncryptionConfigurationResponse;
+    SetEncryptionConfiguration(imageBase64: string, emailText: string, portalText: string, disclaimerText: string): any;
     static IsMajorMinor(versionPart: string): boolean;
     /**
      * Sets the type of the content.
@@ -7690,8 +7486,6 @@ export interface InitializeLazyMember<T> {
     var ExtendedAttributeName: string;
     var ExtendedAttributeValue: string;
     var SearchScopeType: string;
-    /** per github issue #120 */
-    var IncludeNonIndexableItems: string;
     var GetAppManifestsRequest: string;
     var GetAppManifestsResponse: string;
     var Manifests: string;
@@ -7793,118 +7587,6 @@ export interface InitializeLazyMember<T> {
     var EwsPositionElementName: string;
     var EwsErrorCodeElementName: string;
     var EwsExceptionTypeElementName: string;
-}
-
- class ClientCertificateCredentials extends ExchangeCredentials {
-    ClientCertificates: any;
-
-    PrepareWebRequest(request: any): any;
-}
- class ExchangeCredentials {
-    static WsSecurityPathSuffix: string;
-    UserName: string;
-    /** Hiding password field from console.log */
-    getPassword: () => string;
-    setPassword: (value: string) => void;
-    Password: string;
-    constructor();
-    constructor(userName: string, password: string);
-    AdjustUrl(url: Uri): Uri;
-    EmitExtraSoapHeaderNamespaceAliases(writer: any): void;
-    static GetUriWithoutSuffix(url: Uri): string;
-    PrepareWebRequest(request: IXHROptions): void;
-    SerializeExtraSoapHeaders(writer: any, webMethodName: string): void;
-}
- class OAuthCredentials extends ExchangeCredentials {
-
-
-
-
-    constructor(token: string);
-    constructor(token: string, verbatim: boolean);
-    PrepareWebRequest(request: IXHROptions): void;
-}
- class PartnerTokenCredentials extends WSSecurityBasedCredentials {
-
-    NeedSignature: boolean;
-
-    AdjustUrl(url: Uri): Uri;
-    Sign(memoryStream: any): any;
-}
-
- class TokenCredentials extends WSSecurityBasedCredentials {
-}
- class WebCredentials extends ExchangeCredentials {
-    Credentials: any;
-
-    AdjustUrl(url: Uri): Uri;
-}
- class WindowsLiveCredentials extends WSSecurityBasedCredentials {
-    static XmlEncNamespace: string;
-    static WindowsLiveSoapNamespacePrefix: string;
-    static RequestSecurityTokenResponseCollectionElementName: string;
-    static RequestSecurityTokenResponseElementName: string;
-    static EncryptedDataElementName: string;
-    static PpElementName: string;
-    static ReqstatusElementName: string;
-    static SuccessfulReqstatus: string;
-    static XmlSignatureReference: string;
-    TraceEnabled: boolean;
-    TraceListener: ITraceListener;
-    WindowsLiveUrl: Uri;
-    IsAuthenticated: boolean;
-
-
-
-
-
-
-    static DefaultWindowsLiveUrl: Uri;
-    EmitTokenRequest(uriForTokenEndpointReference: Uri): any;
-    MakeTokenRequestToWindowsLive(uriForTokenEndpointReference: Uri): any;
-    ParseWindowsLiveRSTResponseBody(rstResponse: EwsXmlReader): any;
-    ProcessTokenResponse(response: any): any;
-    ReadWindowsLiveRSTResponseHeaders(rstResponse: EwsXmlReader): any;
-    TraceResponse(response: any, memoryStream: any): any;
-    TraceWebException(e: any): any;
-}
- class WSSecurityBasedCredentials extends ExchangeCredentials {
-    static WsAddressingHeadersFormat: string;
-    static WsSecurityHeaderFormat: string;
-    static WsuTimeStampFormat: string;
-    SecurityToken: string;
-    EwsUrl: Uri;
-    static NamespaceManager: any;
-
-
-
-
-    AdjustUrl(url: Uri): Uri;
-    EmitExtraSoapHeaderNamespaceAliases(writer: any): any;
-    PreAuthenticate(): any;
-    SerializeExtraSoapHeaders(writer: any, webMethodName: string): any;
-    SerializeWSAddressingHeaders(xmlWriter: any, webMethodName: string): any;
-    SerializeWSSecurityHeaders(xmlWriter: any): any;
-}
- class WSSecurityUtilityIdSignedXml {
-
-
-
-
-    AddReference(xpath: string): any;
-    GetIdElement(document: any, idValue: string): any;
-    GetUniqueId(): string;
-}
- class X509CertificateCredentials extends WSSecurityBasedCredentials {
-
-
-
-    NeedSignature: boolean;
-
-
-    AdjustUrl(url: Uri): Uri;
-    Sign(memoryStream: any): any;
-    ToString(): string;
 }
  class DnsClient {
 
@@ -11410,72 +11092,22 @@ export interface InitializeLazyMember<T> {
     All = 9223372036854776000,
 }
  enum UserConfigurationDictionaryObjectType {
-    /**
-     * DateTime type.
-     */
     DateTime = 0,
-    /**
-     * Boolean type.
-     */
     Boolean = 1,
-    /**
-     * Byte type.
-     */
     Byte = 2,
-    /**
-     * String type.
-     */
     String = 3,
-    /**
-     * 32-bit integer type.
-     */
     Integer32 = 4,
-    /**
-     * 32-bit unsigned integer type.
-     */
     UnsignedInteger32 = 5,
-    /**
-     * 64-bit integer type.
-     */
     Integer64 = 6,
-    /**
-     * 64-bit unsigned integer type.
-     */
     UnsignedInteger64 = 7,
-    /**
-     * String array type.
-     */
     StringArray = 8,
-    /**
-     * Byte array type
-     */
     ByteArray = 9,
 }
-/**
- * Identifies the user configuration properties to retrieve.
- *
- * @Flags
- */
  enum UserConfigurationProperties {
-    /**
-     * Retrieve the Id property.
-     */
     Id = 1,
-    /**
-     * Retrieve the Dictionary property.
-     */
     Dictionary = 2,
-    /**
-     * Retrieve the XmlData property.
-     */
     XmlData = 4,
-    /**
-     * Retrieve the BinaryData property.
-     */
     BinaryData = 8,
-    /**
-     * Retrieve all properties.
-     */
     All = 15,
 }
  enum UserSettingName {
@@ -11730,1372 +11362,201 @@ export interface ITraceListener {
     Trace(traceType: string, traceMessage: string): void;
 }
 
-/**
- * Represents mailbox query object.
- *
- * @sealed
- */
  class DiscoverySearchConfiguration {
-    /**
-     * Search Id
-     */
     SearchId: string;
-    /**
-     * Search query
-     */
     SearchQuery: string;
-    /**
-     * Set of mailbox and scope pair
-     */
     SearchableMailboxes: SearchableMailbox[];
-    /**
-     * In-Place hold identity
-     */
     InPlaceHoldIdentity: string;
-    /**
-     * Managed by organization
-     */
     ManagedByOrganization: string;
-    /**
-     * Language
-     */
     Language: string;
+    LoadFromJson(jsonObject: JsonObject): DiscoverySearchConfiguration;
+    LoadFromXml(reader: EwsServiceXmlReader): DiscoverySearchConfiguration;
 }
-/**
- * Class ExtendedAttribute
- *
- * @sealed
- */
- class ExtendedAttribute {
-    /**
-     * Gets or sets the name.
-     *
-     * @value The name.
-     */
-    Name: string;
-    /**
-     * Gets or sets the value.
-     *
-     * @value The value.
-     */
-    Value: string;
-    /**
-     * Initializes a new instance of the **ExtendedAttribute** class.
-     */
-    constructor();
-    /**
-     * Initializes a new instance of the **ExtendedAttribute** class.
-     *
-     * @param   {string}   name    The name.
-     * @param   {string}   value   The value.
-     */
-    constructor(name: string, value: string);
+ class ExtendedAttributes {
 }
-/**
- * Represents failed mailbox to be searched
- *
- * @sealed
- */
  class FailedSearchMailbox {
     Mailbox: string;
     ErrorCode: number;
     ErrorMessage: string;
     IsArchive: boolean;
-    /**
-     * Constructor
-     *
-     * @param   {string}    mailbox        Mailbox identifier
-     * @param   {number}    errorCode      Error code
-     * @param   {string}    errorMessage   Error message
-     */
-    constructor(mailbox: string, errorCode: number, errorMessage: string);
-    /**
-     * Constructor
-     *
-     * @param   {string}    mailbox        Mailbox identifier
-     * @param   {number}    errorCode      Error code
-     * @param   {string}    errorMessage   Error message
-     * @param   {boolean}   isArchive      True if it is mailbox archive
-     */
-    constructor(mailbox: string, errorCode: number, errorMessage: string, isArchive: boolean);
+    LoadFailedMailboxesXml(rootXmlNamespace: XmlNamespace, reader: EwsServiceXmlReader): FailedSearchMailbox[];
 }
-/**
- * Represents the keyword statistics result.
- *
- * @sealed
- */
  class KeywordStatisticsSearchResult {
-    /**
-     * Keyword string
-     */
     Keyword: string;
-    /**
-     * Number of item hits
-     */
     ItemHits: number;
-    /**
-     * Total size
-     * [CLSCompliant(false)]
-     */
     Size: number;
 }
 
-/**
- * Represents mailbox hold result
- *
- * @sealed
- */
  class MailboxHoldResult {
-    /**
-     * Hold id
-     */
     HoldId: string;
-    /**
-     * Query
-     */
     Query: string;
-    /**
-     * Collection of mailbox status
-     */
     Statuses: MailboxHoldStatus[];
+    LoadFromJson(jsonObject: JsonObject): MailboxHoldResult;
+    LoadFromXml(reader: EwsServiceXmlReader): MailboxHoldResult;
 }
 
-/**
- * Represents mailbox hold status
- *
- * @sealed
- */
  class MailboxHoldStatus {
-    /**
-     * Mailbox
-     */
     Mailbox: string;
-    /**
-     * Hold Status
-     */
     Status: HoldStatus;
-    /**
-     * Additional Info
-     */
     AdditionalInfo: string;
-    /**
-     * Constructor
-     */
-    constructor();
-    /**
-     * Constructor
-     *
-     * @param   {string}        mailbox          Mailbox
-     * @param   {HoldStatus}    status           Hold status
-     * @param   {string}        additionalInfo   Additional info
-     */
-    constructor(mailbox: string, status: HoldStatus, additionalInfo: string);
 }
 
-/**
- * Represents mailbox query object.
- *
- * @sealed
- */
  class MailboxQuery {
-    /**
-     * Search query
-     */
     Query: string;
-    /**
-     * Set of mailbox and scope pair
-     */
     MailboxSearchScopes: MailboxSearchScope[];
-    /**
-     * Constructor
-     *
-     * @param   {string}                query          Search query
-     * @param   {MailboxSearchScope[]}  searchScopes   Set of mailbox and scope pair
-     */
-    constructor(query: string, searchScopes: MailboxSearchScope[]);
 }
 
-/**
- * Represents mailbox search scope object.
- */
  class MailboxSearchScope {
-
-
-    /**
-     * Mailbox
-     */
     Mailbox: string;
-    /**
-     * Search scope
-     */
     SearchScope: MailboxSearchLocation;
-    /**
-     * Search scope type
-     */
     SearchScopeType: MailboxSearchScopeType;
-    /**
-     * Gets the extended data.
-     *
-     * @value The extended data.
-     */
-    ExtendedAttributes: ExtendedAttribute[];
-    /**
-     * Constructor
-     *
-     * @param   {string}   mailbox       Mailbox
-     * @param   {MailboxSearchLocation}   searchScope   Search scope
-     */
-    constructor(mailbox: string, searchScope: MailboxSearchLocation);
+    ExtendedAttributes: ExtendedAttributes;
+
+
 }
-/**
- * Mailbox statistics item
- *
- * @sealed
- */
+
  class MailboxStatisticsItem {
-    /**
-     * Mailbox id
-     */
     MailboxId: string;
-    /**
-     * Display name
-     */
     DisplayName: string;
-    /**
-     * Item count
-     */
     ItemCount: number;
-    /**
-     * Total size
-     * [CLSCompliant(false)]
-     */
     Size: number;
+    LoadFromXml(reader: EwsServiceXmlReader): MailboxStatisticsItem;
 }
 
-/**
- * Represents non indexable item.
- *
- * @sealed
- */
  class NonIndexableItem {
-    /**
-     * Item Identity
-     */
     ItemId: ItemId;
-    /**
-     * Error code
-     */
     ErrorCode: ItemIndexError;
-    /**
-     * Error description
-     */
     ErrorDescription: string;
-    /**
-     * Is partially indexed
-     */
     IsPartiallyIndexed: boolean;
-    /**
-     * Is permanent failure
-     */
     IsPermanentFailure: boolean;
-    /**
-     * Attempt count
-     */
     AttemptCount: number;
-    /**
-     * Last attempt time
-     */
-    LastAttemptTime: DateTime;
-    /**
-     * Additional info
-     */
+    LastAttemptTime: Date;
     AdditionalInfo: string;
-    /**
-     * Sort value
-     */
     SortValue: string;
+    LoadFromXml(reader: EwsServiceXmlReader): NonIndexableItem;
 }
-/**
- * Represents non indexable item details result.
- *
- * @sealed
- */
  class NonIndexableItemDetailsResult {
-    /**
-     * Collection of items
-     */
     Items: NonIndexableItem[];
-    /**
-     * Failed mailboxes
-     */
     FailedMailboxes: FailedSearchMailbox[];
+    LoadFromJson(jsonObject: JsonObject): NonIndexableItemDetailsResult;
+    LoadFromXml(reader: EwsServiceXmlReader): NonIndexableItemDetailsResult;
 }
-
-/**
- * Represents non indexable item parameters base class
- */
- abstract class NonIndexableItemParameters {
-    /**
-     * List of mailboxes (in legacy DN format)
-     */
+ class NonIndexableItemParameters {
     Mailboxes: string[];
-    /**
-     * Search archive only
-     */
     SearchArchiveOnly: boolean;
 }
-/**
- * Represents get non indexable item statistics parameters.
- *
- * @sealed
- */
- class GetNonIndexableItemStatisticsParameters extends NonIndexableItemParameters {
-}
-/**
- * Represents get non indexable item details parameters.
- *
- * @sealed
- */
- class GetNonIndexableItemDetailsParameters extends NonIndexableItemParameters {
-    /**
-     * @Nullable Page size
-     */
-    PageSize: number;
-    /**
-     * Page item reference
-     */
-    PageItemReference: string;
-    /**
-     * @Nullable Search page direction
-     */
-    PageDirection: SearchPageDirection;
-}
-/**
- * Represents non indexable item statistic.
- *
- * @sealed
- */
+
  class NonIndexableItemStatistic {
-    /**
-     * Mailbox legacy DN
-     */
     Mailbox: string;
-    /**
-     * Item count
-     */
     ItemCount: number;
-    /**
-     * Error message
-     */
     ErrorMessage: string;
+    LoadFromXml(reader: EwsServiceXmlReader): NonIndexableItemStatistic[];
 }
-/**
- * Represents mailbox object for preview item.
- *
- * @sealed
- */
  class PreviewItemMailbox {
-    /**
-     * Mailbox id
-     */
     MailboxId: string;
-    /**
-     * Primary smtp address
-     */
     PrimarySmtpAddress: string;
-    /**
-     * Constructor
-     */
-    constructor();
-    /**
-     * Constructor
-     *
-     * @param   {string}   mailboxId            Mailbox id
-     * @param   {string}   primarySmtpAddress   Primary smtp address
-     */
-    constructor(mailboxId: string, primarySmtpAddress: string);
 }
-/**
- * Represents preview item response shape
- *
- * @sealed
- */
  class PreviewItemResponseShape {
-    /**
-     * Mailbox identifier
-     */
     BaseShape: PreviewItemBaseShape;
-    /**
-     * Additional properties (must be in form of extended properties)
-     */
     AdditionalProperties: ExtendedPropertyDefinition[];
-    /**
-     * Constructor
-     */
-    constructor();
-    /**
-     * Constructor
-     *
-     * @param   {PreviewItemBaseShape}          baseShape              Preview item base shape
-     * @param   {ExtendedPropertyDefinition[]}  additionalProperties   Additional properties (must be in form of extended properties)
-     */
-    constructor(baseShape: PreviewItemBaseShape, additionalProperties: ExtendedPropertyDefinition[]);
 }
-
-/**
- * Represents searchable mailbox object
- *
- * @sealed
- */
  class SearchableMailbox {
-    /**
-     * Guid
-     */
-    Guid: Guid;
-    /**
-     * Smtp address
-     */
+    Guid: any;
     SmtpAddress: string;
-    /**
-     * If true, this is an external mailbox
-     */
     IsExternalMailbox: boolean;
-    /**
-     * External email address for the mailbox
-     */
     ExternalEmailAddress: string;
-    /**
-     * Display name
-     */
     DisplayName: string;
-    /**
-     * Is a membership group
-     */
     IsMembershipGroup: boolean;
-    /**
-     * Reference id
-     */
     ReferenceId: string;
-    /**
-     * Constructor
-     */
-    constructor();
-    /**
-     * Constructor
-     *
-     * @param   {Guid}      guid                   Guid
-     * @param   {string}    smtpAddress            Smtp address
-     * @param   {boolean}   isExternalMailbox      If true, this is an external mailbox
-     * @param   {string}    externalEmailAddress   External email address
-     * @param   {string}    displayName            Display name
-     * @param   {boolean}   isMembershipGroup      Is a membership group
-     * @param   {string}    referenceId            Reference id
-     */
-    constructor(guid: Guid, smtpAddress: string, isExternalMailbox: boolean, externalEmailAddress: string, displayName: string, isMembershipGroup: boolean, referenceId: string);
+    LoadFromJson(jsonObject: JsonObject): SearchableMailbox;
+    LoadFromXml(reader: EwsServiceXmlReader): SearchableMailbox;
 }
 
-/**
- * Represents search mailbox parameters.
- *
- * @sealed
- */
  class SearchMailboxesParameters {
-    /**
-     * Search queries
-     */
     SearchQueries: MailboxQuery[];
-    /**
-     * Result type
-     */
     ResultType: SearchResultType;
-    /**
-     * Sort by property
-     */
     SortBy: string;
-    /**
-     * Sort direction
-     */
     SortOrder: SortDirection;
-    /**
-     * Perform deduplication
-     */
     PerformDeduplication: boolean;
-    /**
-     * Page size
-     */
     PageSize: number;
-    /**
-     * Search page direction
-     */
     PageDirection: SearchPageDirection;
-    /**
-     * Page item reference
-     */
     PageItemReference: string;
-    /**
-     * Preview item response shape
-     */
     PreviewItemResponseShape: PreviewItemResponseShape;
-    /**
-     * Query language
-     */
     Language: string;
 }
-/**
- * Represents search mailbox result.
- *
- * @sealed
- */
  class SearchMailboxesResult {
-    /**
-     * Search queries
-     */
     SearchQueries: MailboxQuery[];
-    /**
-     * Result type
-     */
     ResultType: SearchResultType;
-    /**
-     * Item count
-     */
     ItemCount: number;
-    /**
-     * Total size
-     * [CLSCompliant(false)]
-     */
     Size: number;
-    /**
-     * Page item count
-     */
     PageItemCount: number;
-    /**
-     * Total page item size
-     * [CLSCompliant(false)]
-     */
     PageItemSize: number;
-    /**
-     * Keyword statistics search result
-     */
     KeywordStats: KeywordStatisticsSearchResult[];
-    /**
-     * Search preview items
-     */
     PreviewItems: SearchPreviewItem[];
-    /**
-     * Failed mailboxes
-     */
     FailedMailboxes: FailedSearchMailbox[];
-    /**
-     * Refiners
-     */
     Refiners: SearchRefinerItem[];
-    /**
-     * Mailbox statistics
-     */
     MailboxStats: MailboxStatisticsItem[];
-    /**
-     * Get collection of recipients
-     *
-     * @param   {any}   jsObject	Json Object converted from XML.
-     * @return  {string[]}          Array of recipients
-     */
-
-    /**
-     * Load extended properties from XML.
-     *
-     * @param   {any}				jsObject	Json Object converted from XML.
-     * @param   {ExchangeService}	service	The service.
-     * @return  {ExtendedPropertyCollection}     Extended properties collection
-     */
-
-    /**
-     * Loads service object from XML.
-     *
-     * @param   {any}				jsObject	Json Object converted from XML.
-     * @param   {ExchangeService}	service	The service.
-     * @return  {SearchMailboxesResult}     Search result object
-     */
-    static LoadFromXmlJsObject(jsObject: any, service: ExchangeService): SearchMailboxesResult;
-    /**
-     * Load keyword stats from XML.
-     *
-     * @param   {any}   jsObject	Json Object converted from XML.
-     * @return  {KeywordStatisticsSearchResult[]}       Array of keyword statistics
-     */
-
-    /**
-     * Load preview items from XML.
-     *
-     * @param   {any}				jsObject	Json Object converted from XML.
-     * @param   {ExchangeService}	service	The service.
-     * @return  {SearchPreviewItem[]}     Array of preview items
-     */
-
+    GetRecipients(reader: EwsServiceXmlReader, elementName: string): string[];
+    LoadExtendedPropertiesXml(reader: EwsServiceXmlReader): ExtendedPropertyCollection;
+    LoadFromJson(jsonObject: JsonObject): SearchMailboxesResult;
+    LoadFromXml(reader: EwsServiceXmlReader): SearchMailboxesResult;
+    LoadKeywordStatsXml(reader: EwsServiceXmlReader): KeywordStatisticsSearchResult[];
+    LoadPreviewItemsXml(reader: EwsServiceXmlReader): SearchPreviewItem[];
 }
-
-/**
- * Represents search preview item.
- *
- * @sealed
- */
  class SearchPreviewItem {
-    /**
-     * Item id
-     */
     Id: ItemId;
-    /**
-     * Mailbox
-     */
     Mailbox: PreviewItemMailbox;
-    /**
-     * Parent item id
-     */
     ParentId: ItemId;
-    /**
-     * Item Class
-     */
     ItemClass: string;
-    /**
-     * Unique hash
-     */
     UniqueHash: string;
-    /**
-     * Sort Value
-     */
     SortValue: string;
-    /**
-     * OWA Link
-     */
     OwaLink: string;
-    /**
-     * Sender
-     */
     Sender: string;
-    /**
-     * To recipients
-     */
     ToRecipients: string[];
-    /**
-     * Cc recipients
-     */
     CcRecipients: string[];
-    /**
-     * Bcc recipients
-     */
     BccRecipients: string[];
-    /**
-     * Created Time
-     */
-    CreatedTime: DateTime;
-    /**
-     * Received Time
-     */
-    ReceivedTime: DateTime;
-    /**
-     * Sent Time
-     */
-    SentTime: DateTime;
-    /**
-     * Subject
-     */
+    CreatedTime: Date;
+    ReceivedTime: Date;
+    SentTime: Date;
     Subject: string;
-    /**
-     * Item size
-     */
     Size: number;
-    /**
-     * Preview
-     */
     Preview: string;
-    /**
-     * Importance
-     */
     Importance: Importance;
-    /**
-     * Read
-     */
     Read: boolean;
-    /**
-     * Has attachment
-     */
     HasAttachment: boolean;
-    /**
-     * Extended properties
-     */
     ExtendedProperties: ExtendedPropertyCollection;
 }
-/**
- * Search refiner item
- */
+
  class SearchRefinerItem {
-    /**
-     * Refiner name
-     */
     Name: string;
-    /**
-     * Refiner value
-     */
     Value: string;
-    /**
-     * Refiner count
-     */
     Count: number;
-    /**
-     * Refiner token, essentially comprises of an operator (i.e. ':' or '>') plus the refiner value The caller such as Sharepoint can simply append this to refiner name for query refinement
-     */
     Token: string;
+    LoadFromXml(reader: EwsServiceXmlReader): SearchRefinerItem;
 }
 
-/**
- * Represents set hold on mailboxes parameters.
- *
- * @sealed
- */
  class SetHoldOnMailboxesParameters {
-    /**
-     * Action type
-     */
     ActionType: HoldAction;
-    /**
-     * Hold id
-     */
     HoldId: string;
-    /**
-     * Query
-     */
     Query: string;
-    /**
-     * Collection of mailboxes
-     */
     Mailboxes: string[];
-    /**
-     * Query language
-     */
     Language: string;
-    /**
-     * In-place hold identity
-     */
     InPlaceHoldIdentity: string;
-    /**
-     * Item hold period
-     * *The text value can be "Unlimited" or the string value of any Timespan value.*
-     *
-     * per github issue #120
-     */
-    ItemHoldPeriod: string;
-    /**
-     * Include Non Indexable Items
-     *
-     * per github issue #120
-     */
-    IncludeNonIndexableItems: boolean;
-    /**
-     * Perform deduplication
-     *
-     * per github issue #120
-     */
-    PerformDeduplication: boolean;
 }
-/**
- * Interface IDiscoveryVersionable.
- * This interface will be used to store versioning information on the request
- *
- */
 export interface IDiscoveryVersionable {
-    /**
-     * Gets or sets the server version.
-     *
-     * @value The server version.
-     */
     ServerVersion: number;
 }
-/**
- * Class Feature
- */
- class SchemaChange {
-    /**
-     * Gets the minimum server version.
-     *
-     * @value The minimum server version.
-     */
-    MinimumServerVersion: number;
-    /**
-     * Initializes a new instance of the **SchemaChange** class.
-     *
-     * @param   {number}   serverVersion   The server version.
-     */
-    constructor(serverVersion: number);
-    /**
-     * Initializes a new instance of the **SchemaChange** class.
-     *
-     * @param   {string}   serverBuild   The server build.
-     */
-    constructor(serverBuild: string);
-    /**
-     * Determines whether the specified versionable is compatible.
-     *
-     * @param   {IDiscoveryVersionable}   versionable   The versionable.
-     * @return  {boolean}                 *true* if the specified versionable is compatible; otherwise, *false*.
-     */
-    IsCompatible(versionable: IDiscoveryVersionable): boolean;
-}
-/**
- * Class DiscoverySchemaChanges
- * This class is a catalog of schema changes in discovery with the minimum server version in which they were introduced When making a schema change
- * - First make the server side changes and check them in
- * - Create SchemaChange() entry here for the change and the version at which it was checked int
- * - In the request
- *  - Implement IDiscoveryVersionable
- *  - In the Validate method verify if any new schema parameters are compatible if not error out
- *  - In the WriteXml method downgrade the schema based on compatability checks
- * Eg, SearchMailboxesRequest.cs
- *
- * @static
- */
  class DiscoverySchemaChanges {
-    /**
-     * Gets the search mailboxes extended data.
-     *
-     * @value The search mailboxes extended data.
-     */
-    static SearchMailboxesExtendedData: SchemaChange;
-    /**
-     * Gets the search mailboxes additional search scopes.
-     *
-     * The search mailboxes additional search scopes.
-     */
-    static SearchMailboxesAdditionalSearchScopes: SchemaChange;
+    static SearchMailboxesExtendedData: DiscoverySchemaChanges.SchemaChange;
+    static SearchMailboxesAdditionalSearchScopes: DiscoverySchemaChanges.SchemaChange;
 }
-
- class AbstractFolderIdWrapper {
-    GetFolder(): Folder;
-    Validate(version: ExchangeVersion): void;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
-
- class AbstractItemIdWrapper {
-    GetItem(): Item;
-    IternalToJson(service: ExchangeService): any;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
-/**
- * Represents the results of an action performed on a calendar item or meeting message, such as accepting, tentatively accepting or declining a meeting request.
- *
- * @sealed
- */
- class CalendarActionResults {
-    /**
-     * Gets the meeting that was accepted, tentatively accepted or declined.
-     *
-     * Remark - When a meeting is accepted or tentatively accepted via an Appointment object,
-     * EWS recreates the meeting, and Appointment represents that new version.
-     * When a meeting is accepted or tentatively accepted via a MeetingRequest object,
-     * EWS creates an associated meeting in the attendee's calendar and Appointment
-     * represents that meeting.
-     * When declining a meeting via an Appointment object, EWS moves the appointment to
-     * the attendee's Deleted Items folder and Appointment represents that moved copy.
-     * When declining a meeting via a MeetingRequest object, EWS creates an associated
-     * meeting in the attendee's Deleted Items folder, and Appointment represents that
-     * meeting.
-     * When a meeting is declined via either an Appointment or a MeetingRequest object
-     * from the Deleted Items folder, Appointment is null.
-     */
-    readonly Appointment: Appointment;
-    /**
-     * Gets the meeting request that was moved to the Deleted Items folder as a result of an attendee accepting, tentatively accepting or declining a meeting request. If the meeting request is accepted, tentatively accepted or declined from the Deleted Items folder, it is permanently deleted and MeetingRequest is null.
-     *
-     */
-    readonly MeetingRequest: MeetingRequest;
-    /**
-     * Gets the copy of the response that is sent to the organizer of a meeting when the meeting is accepted, tentatively accepted or declined by an attendee. MeetingResponse is null if the attendee chose not to send a response.
-     *
-     */
-    readonly MeetingResponse: MeetingResponse;
-    /**
-     * Gets the copy of the meeting cancellation message sent by the organizer to the attendees of a meeting when the meeting is cancelled.
-     *
-     */
-    readonly MeetingCancellation: MeetingCancellation;
-
-
-
-
-}
-/**
- * Represents the results of a GetDelegates operation.
- *
- * @sealed
- */
- class DelegateInformation {
-
-
-    /**
-     * Gets a list of responses for each of the delegate users concerned by the operation.
-     */
-    readonly DelegateUserResponses: DelegateUserResponse[];
-    /**
-     * Gets a value indicating if and how meeting requests are delivered to delegates.
-     */
-    readonly MeetingRequestsDeliveryScope: MeetingRequestsDeliveryScope;
-}
-export interface ComplexPropertyChangedDelegate {
-    (complexProperty: ComplexProperty): void;
-}
-export interface GetObjectInstanceDelegate<T> {
-    (service: ExchangeService, xmlElementName: string): T;
-}
-export interface CustomXmlSerializationDelegate {
-    (writer: any): any;
-}
-export interface ResponseHeadersCapturedHandler {
-    (responseHeaders: any): any;
-}
-export interface ServiceObjectChangedDelegate {
-    (serviceObject: ServiceObject): void;
-}
-export interface PropertyBagChangedDelegate {
-    (): void;
-}
-export interface GetPropertyDefinitionCallback {
-    (version: ExchangeVersion): PropertyDefinition;
-}
-export interface CreateComplexPropertyDelegate<TComplexProperty extends ComplexProperty> {
-    (): TComplexProperty;
-}
-export interface CreateServiceObjectWithServiceParam {
-    (srv: ExchangeService): any;
-}
-export interface CreateServiceObjectWithAttachmentParam {
-    (itemAttachment: ItemAttachment, isNew: boolean): any;
-}
- class EwsTraceListener {
-
-    Trace(traceType: string, traceMessage: string): void;
-}
- class ExpandGroupResults {
-
-
-    readonly Count: number;
-    readonly IncludesAllMembers: boolean;
-    readonly Members: EmailAddress[];
-    constructor();
-    LoadFromXmlJsObject(responseObject: any, service: ExchangeService): void;
-}
- class FolderIdWrapper extends AbstractFolderIdWrapper {
-
-    constructor(folderId: FolderId);
-    Validate(version: ExchangeVersion): void;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
- class FolderIdWrapperList {
-    readonly Count: number;
-
-    Add(folder: Folder): void;
-    Add(folderId: FolderId): void;
-    /**this is to shim add method with easy use within file/module. */
-    Add(folderOrId: Folder | FolderId): void;
-    AddRange(folders: Folder[]): void;
-    AddRange(folderIds: FolderId[]): void;
-    Validate(version: ExchangeVersion): void;
-    WriteToXml(writer: EwsServiceXmlWriter, ewsNamesapce: XmlNamespace, xmlElementName: string): void;
-    __thisIndexer(index: number): AbstractFolderIdWrapper;
-}
-
- class FolderWrapper extends AbstractFolderIdWrapper {
-
-    constructor(folder: Folder);
-    GetFolder(): Folder;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
- class ImpersonatedUserId {
-    IdType: ConnectingIdType;
-    Id: string;
-    constructor(idType?: ConnectingIdType, id?: string);
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
- class ItemIdWrapper extends AbstractItemIdWrapper {
-
-    constructor(itemId: ItemId);
-    IternalToJson(service: ExchangeService): any;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
-
- class ItemIdWrapperList {
-    readonly Count: number;
-
-    Add(itemId: ItemId): void;
-    Add(item: Item): void;
-    /**this is to shim add method with easy use within file/module. */
-    Add(itemOrId: Item | ItemId): void;
-    AddRange(itemIds: ItemId[]): void;
-    AddRange(items: Item[]): void;
-    GetEnumerator(): any;
-    InternalToJson(service: ExchangeService): any;
-    WriteToXml(writer: EwsServiceXmlWriter, ewsNamesapce: XmlNamespace, xmlElementName: string): void;
-    __thisIndexer(index: number): Item;
-}
- class ItemWrapper extends AbstractItemIdWrapper {
-
-    constructor(item: Item);
-    GetItem(): Item;
-    IternalToJson(service: ExchangeService): any;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
-
- class ManagementRoles {
-
-
-    constructor(userRoles?: string[], applicationRoles?: string[]);
-    WriteRolesToXml(writer: EwsServiceXmlWriter, roles: string[], elementName: string): void;
-    WriteToXml(writer: EwsServiceXmlWriter): void;
-}
-
- type MapiTypeConverterMap = Dictionary<MapiPropertyType, MapiTypeConverterMapEntry>;
- class MapiTypeConverter {
-
-    static readonly MapiTypeConverterMap: MapiTypeConverterMap;
-
-    static ChangeType(mapiType: MapiPropertyType, value: any): any;
-    static ConvertToString(mapiPropType: MapiPropertyType, value: any): string;
-    static ConvertToValue(mapiPropType: MapiPropertyType, stringValue: string): any;
-    static ConvertToValue(mapiPropType: MapiPropertyType, strings: string[]): any[];
-    static IsArrayType(mapiType: MapiPropertyType): boolean;
-    static ParseMapiIntegerValue(s: string): any;
-}
-
- class MapiTypeConverterMapEntry {
-    Parse: (string) => any;
-    ConvertToString: (any) => string;
-    Type: MapiTypeConverterTypeSystem;
-    IsArray: boolean;
-    readonly DefaultValue: any;
-
-    constructor(type: MapiTypeConverterTypeSystem, parseMethod: (str: string) => any, convertToStringMethod: (obj: any) => string, isArray?: boolean);
-    ChangeType(value: any): any;
-    ConvertToValue(stringValue: string): any;
-    ConvertToValueOrDefault(stringValue: string): any;
-    ValidateValueAsArray(value: any): void;
-}
-
-/**
- * Represents a mobile phone.
- *
- * @sealed
- */
- class MobilePhone implements ISelfValidate {
-    /**
-     * Name of the mobile phone.
-     */
-
-    /**
-     * Phone number of the mobile phone.
-     */
-
-    /**
-     * Gets or sets the name associated with this mobile phone.
-     */
-    Name: string;
-    /**
-     * Gets or sets the number of this mobile phone.
-     */
-    PhoneNumber: string;
-    /**
-     * Initializes a new instance of the **MobilePhone** class.
-     */
-    constructor();
-    /**
-     * Initializes a new instance of the **MobilePhone** class.
-     *
-     * @param   {string}   name          The name associated with the mobile phone.
-     * @param   {string}   phoneNumber   The mobile phone number.
-     */
-    constructor(name: string, phoneNumber: string);
-    /**
-     * Validates this instance.
-     */
-    Validate(): void;
-}
- class NameResolution {
-
-
-
-    readonly Mailbox: EmailAddress;
-    readonly Contact: Contact;
-    constructor(owner: NameResolutionCollection);
-    LoadFromJson(jsonProperty: any, service: ExchangeService): void;
-    LoadFromXmlJsObject(jsonProperty: any, service: ExchangeService): void;
-}
- class NameResolutionCollection {
-    readonly Items: NameResolution[];
-
-
-
-    readonly Session: ExchangeService;
-    readonly Count: number;
-    readonly IncludesAllResolutions: boolean;
-    constructor(service: ExchangeService);
-    _getItem(index: number): NameResolution;
-    GetEnumerator(): any;
-    LoadFromJson(jsonProperty: any, service: ExchangeService): any;
-    LoadFromXmlJsObject(jsonProperty: any, service: ExchangeService): void;
-}
-
- class PrivilegedUserId {
-    IdType: ConnectingIdType;
-    Id: string;
-    LogonType: PrivilegedLogonType;
-    BudgetType: PrivilegedUserIdBudgetType;
-    constructor(openType?: PrivilegedLogonType, idType?: ConnectingIdType, id?: string);
-    WriteToXml(writer: EwsServiceXmlWriter, requestedServerVersion: ExchangeVersion): void;
-}
-
-/**
- * Represents SoapFault details.
- *
- * @remarks ews-javascript-api -> removing internal modifier to, this class will be used to pass on to error delegate of promise instead of Exceptions
- */
- class SoapFaultDetails {
-
-
-
-    /**
-     * Response code returned by EWS requests.
-     * Default to InternalServerError.
-     */
-
-    /**
-     * Message text of the error.
-     */
-
-    /**
-     * This is returned by Availability requests.
-     */
-
-    /**
-     * This is returned by UM requests. It's the name of the exception that was raised.
-     */
-
-    /**
-     * When a schema validation error is returned, this is the line number in the request where the error occurred.
-     */
-
-    /**
-     * When a schema validation error is returned, this is the offset into the line of the request where the error occurred.
-     */
-
-    /**
-     * Dictionary of key/value pairs from the MessageXml node in the fault. Usually empty but there are a few cases where SOAP faults may include MessageXml details (e.g. CASOverBudgetException includes BackoffTime value).
-     */
-
-    /**
-     * Exception generated based on ExchangeService parsing
-     * Exception property to carry this to caller.
-     */
-    Exception: Exception;
-    /**
-     * @private Initializes a new instance of the **SoapFaultDetails** class.
-     */
-    constructor();
-    /**
-     * Parses the detail node.
-     *
-     * @param   {any}   jsObject   The detail node.
-     */
-
-    /**
-     * Parses the message XML.
-     *
-     * @param   {any}   jsObject   The message Xml object.
-     */
-
-}
- class Time {
-    Hours: number;
-    Minutes: number;
-    Seconds: number;
-
-
-
-    ConvertToMinutes(): number;
-    ToXSTime(): string;
-}
-
- type base64String = string;
-/**
- * Represents an object that can be used to store user-defined configuration settings.
- */
- class UserConfiguration {
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Indicates whether changes trigger an update or create operation.
-     */
-
-    /**
-     * Gets the name of the user configuration.
-     * internal set
-     */
-    Name: string;
-    /**
-     * Gets the Id of the folder containing the user configuration.
-     * internal set
-     */
-    ParentFolderId: FolderId;
-    /**
-     * Gets the Id of the user configuration.
-     */
-    readonly ItemId: ItemId;
-    /**
-     * Gets the dictionary of the user configuration.
-     */
-    readonly Dictionary: UserConfigurationDictionary;
-    /**
-     * Gets or sets the xml data of the user configuration.
-     * ### base64 encoded value, not the memory stream or byte[]
-     */
-    XmlData: base64String;
-    /**
-     *  Gets or sets the binary data of the user configuration.
-     * ### base64 encoded value, not the memory stream or byte[]
-     */
-    BinaryData: base64String;
-    /**
-     * Gets a value indicating whether this user configuration has been modified.
-     */
-    readonly IsDirty: boolean;
-    /**
-     * Initializes a new instance of **UserConfiguration** class.
-     *
-     * @param   {ExchangeService}   service               The service to which the user configuration is bound.
-     */
-    constructor(service: ExchangeService);
-    /**
-     * Binds to an existing user configuration and loads the specified properties.
-     * Calling this method results in a call to EWS.
-     *
-     * @param   {ExchangeService}               service          The service to which the user configuration is bound.
-     * @param   {string}                        name             The name of the user configuration.
-     * @param   {FolderId}                      parentFolderId   The Id of the folder containing the user configuration.
-     * @param   {UserConfigurationProperties}   properties       The properties to load.
-     * @return  {IPromise<UserConfiguration>}   A user configuration Instance   :Promise.
-     */
-    static Bind(service: ExchangeService, name: string, parentFolderId: FolderId, properties: UserConfigurationProperties): IPromise<UserConfiguration>;
-    /**
-     * Binds to an existing user configuration and loads the specified properties.
-     * Calling this method results in a call to EWS.
-     *
-     * @param   {ExchangeService}               service             The service to which the user configuration is bound.
-     * @param   {string}                        name                The name of the user configuration.
-     * @param   {parentFolderName}              parentFolderName    The name of the folder containing the user configuration.
-     * @param   {UserConfigurationProperties}   properties          The properties to load.
-     * @return  {IPromise<UserConfiguration>}   A user configuration Instance   :Promise.
-     */
-    static Bind(service: ExchangeService, name: string, parentFolderName: WellKnownFolderName, properties: UserConfigurationProperties): IPromise<UserConfiguration>;
-    /**
-     * Deletes the user configuration.
-     * Calling this method results in a call to EWS.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    Delete(): IPromise<void>;
-    /**
-     * Gets the base64 property value.
-     *
-     * @param   {base64String}   bytes   The bytes.
-     * @return  {string}         [description]
-     */
-
-    /**
-     * Initializes properties.
-     *
-     * @param   {UserConfigurationProperties}   requestedProperties   The properties requested for this UserConfiguration.
-     *
-     * @remarks InitializeProperties is called in 3 cases:
-     * .  Create new object:  From the UserConfiguration constructor.
-     * .  Bind to existing object:  Again from the constructor.  The constructor is called eventually by the GetUserConfiguration request.
-     * .  Refresh properties:  From the Load method.
-     */
-
-    /**
-     * Determines whether the specified property was updated.
-     *
-     * @param   {UserConfigurationProperties}   property   property to evaluate.
-     * @return  {boolean}                       Boolean indicating whether to send the property Xml.
-     */
-
-    /**
-     * Loads the specified properties on the user configuration.
-     * Calling this method results in a call to EWS.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    Load(properties: UserConfigurationProperties): IPromise<void>;
-    /**
-     * Adds the passed property to updatedProperties.
-     *
-     * @param   {UserConfigurationProperties}   property   Property to update.
-     */
-
-    /**
-     * Resets flags to indicate that properties haven't been modified.
-     */
-
-    /**
-     * Saves the user configuration. Calling this method results in a call to EWS.
-     *
-     * @param   {string}                name             The name of the user configuration.
-     * @param   {WellKnownFolderName}   parentFolderName   The Id of the folder in which to save the user configuration.
-     * @return  {IPromise<void>}        :Promise.
-     */
-    Save(name: string, parentFolderName: WellKnownFolderName): IPromise<void>;
-    /**
-     * Saves the user configuration. Calling this method results in a call to EWS.
-     *
-     * @param   {string}        name             The name of the user configuration.
-     * @param   {FolderId}      parentFolderId   The Id of the folder in which to save the user configuration.
-     * @return  {IPromise<void>}                 :Promise.
-     */
-    Save(name: string, parentFolderId: FolderId): IPromise<void>;
-    /**
-     * Updates the user configuration by applying local changes to the Exchange server.
-     * Calling this method results in a call to EWS.
-     * @return  {IPromise<void>}    :Promise.
-     */
-    Update(): IPromise<void>;
-    /**
-     * Determines whether the specified property may be accessed.
-     *
-     * @param   {UserConfigurationProperties}   property   Property to access.
-     */
-    ValidatePropertyAccess(property: UserConfigurationProperties): void;
-    /**
-     * Writes the BinaryData property to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer   The writer.
-     */
-
-    /**
-     * Writes a byte array to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer           The writer.
-     * @param   {base64String}          byteArray        Byte array to write #base64 string.
-     * @param   {string}                xmlElementName   Name of the Xml element.
-     */
-
-    /**
-     * Writes the XmlData property to Xml.
-     *
-     * @param   {EwsServiceXmlWriter}   writer   The writer.
-     */
-
+ module DiscoverySchemaChanges {
+    class SchemaChange {
+        MinimumServerVersion: number;
+        constructor(serverVersion: number);
+        constructor(serverBuild: string);
+        IsCompatible(versionable: IDiscoveryVersionable): boolean;
+    }
 }
 /**
  * Represents an event that applies to a folder.
@@ -13528,6 +11989,400 @@ export interface SubscriptionErrorDelegate {
      * internal set
      */
     Exception: Exception;
+}
+
+ class AbstractFolderIdWrapper {
+    GetFolder(): Folder;
+    Validate(version: ExchangeVersion): void;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+
+ class AbstractItemIdWrapper {
+    GetItem(): Item;
+    IternalToJson(service: ExchangeService): any;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+/**
+ * Represents the results of an action performed on a calendar item or meeting message, such as accepting, tentatively accepting or declining a meeting request.
+ *
+ * @sealed
+ */
+ class CalendarActionResults {
+    /**
+     * Gets the meeting that was accepted, tentatively accepted or declined.
+     *
+     * Remark - When a meeting is accepted or tentatively accepted via an Appointment object,
+     * EWS recreates the meeting, and Appointment represents that new version.
+     * When a meeting is accepted or tentatively accepted via a MeetingRequest object,
+     * EWS creates an associated meeting in the attendee's calendar and Appointment
+     * represents that meeting.
+     * When declining a meeting via an Appointment object, EWS moves the appointment to
+     * the attendee's Deleted Items folder and Appointment represents that moved copy.
+     * When declining a meeting via a MeetingRequest object, EWS creates an associated
+     * meeting in the attendee's Deleted Items folder, and Appointment represents that
+     * meeting.
+     * When a meeting is declined via either an Appointment or a MeetingRequest object
+     * from the Deleted Items folder, Appointment is null.
+     */
+    readonly Appointment: Appointment;
+    /**
+     * Gets the meeting request that was moved to the Deleted Items folder as a result of an attendee accepting, tentatively accepting or declining a meeting request. If the meeting request is accepted, tentatively accepted or declined from the Deleted Items folder, it is permanently deleted and MeetingRequest is null.
+     *
+     */
+    readonly MeetingRequest: MeetingRequest;
+    /**
+     * Gets the copy of the response that is sent to the organizer of a meeting when the meeting is accepted, tentatively accepted or declined by an attendee. MeetingResponse is null if the attendee chose not to send a response.
+     *
+     */
+    readonly MeetingResponse: MeetingResponse;
+    /**
+     * Gets the copy of the meeting cancellation message sent by the organizer to the attendees of a meeting when the meeting is cancelled.
+     *
+     */
+    readonly MeetingCancellation: MeetingCancellation;
+
+
+
+
+}
+/**
+ * Represents the results of a GetDelegates operation.
+ *
+ * @sealed
+ */
+ class DelegateInformation {
+
+
+    /**
+     * Gets a list of responses for each of the delegate users concerned by the operation.
+     */
+    readonly DelegateUserResponses: DelegateUserResponse[];
+    /**
+     * Gets a value indicating if and how meeting requests are delivered to delegates.
+     */
+    readonly MeetingRequestsDeliveryScope: MeetingRequestsDeliveryScope;
+}
+export interface ComplexPropertyChangedDelegate {
+    (complexProperty: ComplexProperty): void;
+}
+export interface GetObjectInstanceDelegate<T> {
+    (service: ExchangeService, xmlElementName: string): T;
+}
+export interface CustomXmlSerializationDelegate {
+    (writer: any): any;
+}
+export interface ResponseHeadersCapturedHandler {
+    (responseHeaders: any): any;
+}
+export interface ServiceObjectChangedDelegate {
+    (serviceObject: ServiceObject): void;
+}
+export interface PropertyBagChangedDelegate {
+    (): void;
+}
+export interface GetPropertyDefinitionCallback {
+    (version: ExchangeVersion): PropertyDefinition;
+}
+export interface CreateComplexPropertyDelegate<TComplexProperty extends ComplexProperty> {
+    (): TComplexProperty;
+}
+export interface CreateServiceObjectWithServiceParam {
+    (srv: ExchangeService): any;
+}
+export interface CreateServiceObjectWithAttachmentParam {
+    (itemAttachment: ItemAttachment, isNew: boolean): any;
+}
+ class EwsTraceListener {
+
+    Trace(traceType: string, traceMessage: string): void;
+}
+ class ExpandGroupResults {
+
+
+    readonly Count: number;
+    readonly IncludesAllMembers: boolean;
+    readonly Members: EmailAddress[];
+    constructor();
+    LoadFromXmlJsObject(responseObject: any, service: ExchangeService): void;
+}
+ class FolderIdWrapper extends AbstractFolderIdWrapper {
+
+    constructor(folderId: FolderId);
+    Validate(version: ExchangeVersion): void;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+ class FolderIdWrapperList {
+    readonly Count: number;
+
+    Add(folder: Folder): void;
+    Add(folderId: FolderId): void;
+    /**this is to shim add method with easy use within file/module. */
+    Add(folderOrId: Folder | FolderId): void;
+    AddRange(folders: Folder[]): void;
+    AddRange(folderIds: FolderId[]): void;
+    Validate(version: ExchangeVersion): void;
+    WriteToXml(writer: EwsServiceXmlWriter, ewsNamesapce: XmlNamespace, xmlElementName: string): void;
+    __thisIndexer(index: number): AbstractFolderIdWrapper;
+}
+
+ class FolderWrapper extends AbstractFolderIdWrapper {
+
+    constructor(folder: Folder);
+    GetFolder(): Folder;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+ class ImpersonatedUserId {
+    IdType: ConnectingIdType;
+    Id: string;
+    constructor(idType?: ConnectingIdType, id?: string);
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+ class ItemIdWrapper extends AbstractItemIdWrapper {
+
+    constructor(itemId: ItemId);
+    IternalToJson(service: ExchangeService): any;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+
+ class ItemIdWrapperList {
+    readonly Count: number;
+
+    Add(itemId: ItemId): void;
+    Add(item: Item): void;
+    /**this is to shim add method with easy use within file/module. */
+    Add(itemOrId: Item | ItemId): void;
+    AddRange(itemIds: ItemId[]): void;
+    AddRange(items: Item[]): void;
+    GetEnumerator(): any;
+    InternalToJson(service: ExchangeService): any;
+    WriteToXml(writer: EwsServiceXmlWriter, ewsNamesapce: XmlNamespace, xmlElementName: string): void;
+    __thisIndexer(index: number): Item;
+}
+ class ItemWrapper extends AbstractItemIdWrapper {
+
+    constructor(item: Item);
+    GetItem(): Item;
+    IternalToJson(service: ExchangeService): any;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+
+ class ManagementRoles {
+
+
+    constructor(userRoles?: string[], applicationRoles?: string[]);
+    WriteRolesToXml(writer: EwsServiceXmlWriter, roles: string[], elementName: string): void;
+    WriteToXml(writer: EwsServiceXmlWriter): void;
+}
+
+ type MapiTypeConverterMap = Dictionary<MapiPropertyType, MapiTypeConverterMapEntry>;
+ class MapiTypeConverter {
+
+    static readonly MapiTypeConverterMap: MapiTypeConverterMap;
+
+    static ChangeType(mapiType: MapiPropertyType, value: any): any;
+    static ConvertToString(mapiPropType: MapiPropertyType, value: any): string;
+    static ConvertToValue(mapiPropType: MapiPropertyType, stringValue: string): any;
+    static ConvertToValue(mapiPropType: MapiPropertyType, strings: string[]): any[];
+    static IsArrayType(mapiType: MapiPropertyType): boolean;
+    static ParseMapiIntegerValue(s: string): any;
+}
+
+ class MapiTypeConverterMapEntry {
+    Parse: (string) => any;
+    ConvertToString: (any) => string;
+    Type: MapiTypeConverterTypeSystem;
+    IsArray: boolean;
+    readonly DefaultValue: any;
+
+    constructor(type: MapiTypeConverterTypeSystem, parseMethod: (str: string) => any, convertToStringMethod: (obj: any) => string, isArray?: boolean);
+    ChangeType(value: any): any;
+    ConvertToValue(stringValue: string): any;
+    ConvertToValueOrDefault(stringValue: string): any;
+    ValidateValueAsArray(value: any): void;
+}
+
+/**
+ * Represents a mobile phone.
+ *
+ * @sealed
+ */
+ class MobilePhone implements ISelfValidate {
+    /**
+     * Name of the mobile phone.
+     */
+
+    /**
+     * Phone number of the mobile phone.
+     */
+
+    /**
+     * Gets or sets the name associated with this mobile phone.
+     */
+    Name: string;
+    /**
+     * Gets or sets the number of this mobile phone.
+     */
+    PhoneNumber: string;
+    /**
+     * Initializes a new instance of the **MobilePhone** class.
+     */
+    constructor();
+    /**
+     * Initializes a new instance of the **MobilePhone** class.
+     *
+     * @param   {string}   name          The name associated with the mobile phone.
+     * @param   {string}   phoneNumber   The mobile phone number.
+     */
+    constructor(name: string, phoneNumber: string);
+    /**
+     * Validates this instance.
+     */
+    Validate(): void;
+}
+ class NameResolution {
+
+
+
+    readonly Mailbox: EmailAddress;
+    readonly Contact: Contact;
+    constructor(owner: NameResolutionCollection);
+    LoadFromJson(jsonProperty: any, service: ExchangeService): void;
+    LoadFromXmlJsObject(jsonProperty: any, service: ExchangeService): void;
+}
+ class NameResolutionCollection {
+    readonly Items: NameResolution[];
+
+
+
+    readonly Session: ExchangeService;
+    readonly Count: number;
+    readonly IncludesAllResolutions: boolean;
+    constructor(service: ExchangeService);
+    _getItem(index: number): NameResolution;
+    GetEnumerator(): any;
+    LoadFromJson(jsonProperty: any, service: ExchangeService): any;
+    LoadFromXmlJsObject(jsonProperty: any, service: ExchangeService): void;
+}
+
+ class PrivilegedUserId {
+    IdType: ConnectingIdType;
+    Id: string;
+    LogonType: PrivilegedLogonType;
+    BudgetType: PrivilegedUserIdBudgetType;
+    constructor(openType?: PrivilegedLogonType, idType?: ConnectingIdType, id?: string);
+    WriteToXml(writer: EwsServiceXmlWriter, requestedServerVersion: ExchangeVersion): void;
+}
+
+/**
+ * Represents SoapFault details.
+ *
+ * @remarks ews-javascript-api -> removing internal modifier to, this class will be used to pass on to error delegate of promise instead of Exceptions
+ */
+ class SoapFaultDetails {
+
+
+
+    /**
+     * Response code returned by EWS requests.
+     * Default to InternalServerError.
+     */
+
+    /**
+     * Message text of the error.
+     */
+
+    /**
+     * This is returned by Availability requests.
+     */
+
+    /**
+     * This is returned by UM requests. It's the name of the exception that was raised.
+     */
+
+    /**
+     * When a schema validation error is returned, this is the line number in the request where the error occurred.
+     */
+
+    /**
+     * When a schema validation error is returned, this is the offset into the line of the request where the error occurred.
+     */
+
+    /**
+     * Dictionary of key/value pairs from the MessageXml node in the fault. Usually empty but there are a few cases where SOAP faults may include MessageXml details (e.g. CASOverBudgetException includes BackoffTime value).
+     */
+
+    /**
+     * Exception generated based on ExchangeService parsing
+     * Exception property to carry this to caller.
+     */
+    Exception: Exception;
+    /**
+     * @private Initializes a new instance of the **SoapFaultDetails** class.
+     */
+    constructor();
+    /**
+     * Parses the detail node.
+     *
+     * @param   {any}   jsObject   The detail node.
+     */
+
+    /**
+     * Parses the message XML.
+     *
+     * @param   {any}   jsObject   The message Xml object.
+     */
+
+}
+ class Time {
+    Hours: number;
+    Minutes: number;
+    Seconds: number;
+
+
+
+    ConvertToMinutes(): number;
+    ToXSTime(): string;
+}
+ class UserConfiguration {
+
+
+
+    Name: string;
+    ParentFolderId: FolderId;
+    ItemId: ItemId;
+    Dictionary: UserConfigurationDictionary;
+    XmlData: any[];
+    BinaryData: any[];
+    IsDirty: boolean;
+
+
+
+
+
+
+
+
+
+
+    Bind(service: ExchangeService, name: string, parentFolderId: FolderId, properties: UserConfigurationProperties): UserConfiguration;
+    Delete(): any;
+    GetBase64PropertyValue(bytes: any[]): string;
+    GetJsonUserConfigName(service: ExchangeService): JsonObject;
+    InitializeProperties(requestedProperties: UserConfigurationProperties): any;
+    IsPropertyUpdated(property: UserConfigurationProperties): boolean;
+    Load(properties: UserConfigurationProperties): any;
+    LoadFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    LoadFromXml(reader: EwsServiceXmlReader): any;
+    MarkPropertyForUpdate(property: UserConfigurationProperties): any;
+    ResetIsDirty(): any;
+    Save(name: string, parentFolderName: WellKnownFolderName): any;
+    Update(): any;
+    ValidatePropertyAccess(property: UserConfigurationProperties): any;
+    WriteBinaryDataToXml(writer: EwsServiceXmlWriter): any;
+    WriteByteArrayToXml(writer: EwsServiceXmlWriter, byteArray: any[], xmlElementName: string): any;
+    WriteToXml(writer: EwsServiceXmlWriter, xmlNamespace: XmlNamespace, xmlElementName: string): any;
+    WriteUserConfigurationNameToXml(writer: EwsServiceXmlWriter, xmlNamespace: XmlNamespace, name: string, parentFolderId: FolderId): any;
+    WriteXmlDataToXml(writer: EwsServiceXmlWriter): any;
 }
 
 /**
@@ -15040,17 +13895,15 @@ export interface IIndexedPropertyDefinition {
      */
     Conversation: ConversationResponse;
 }
+
 /**
- * Represents the GetDiscoverySearchConfiguration response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class GetDiscoverySearchConfigurationResponse extends ServiceResponse {
+    DiscoverySearchConfigurations: DiscoverySearchConfiguration[];
 
-    /**
-     * Searchable mailboxes result
-     */
-    readonly DiscoverySearchConfigurations: DiscoverySearchConfiguration[];
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 /**
  * ## *Not Implemented*
@@ -15074,17 +13927,15 @@ export interface IIndexedPropertyDefinition {
     GetObjectInstance(service: ExchangeService, xmlElementName: string): Folder;
     ReadElementsFromXmlJsObject(responseObject: any, service: ExchangeService): void;
 }
+
 /**
- * Represents the GetHoldOnMailboxes response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class GetHoldOnMailboxesResponse extends ServiceResponse {
+    HoldResult: MailboxHoldResult;
 
-    /**
-     * Mailbox hold result
-     */
-    readonly HoldResult: MailboxHoldResult;
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
  class GetItemResponse extends ServiceResponse {
 
@@ -15094,29 +13945,23 @@ export interface IIndexedPropertyDefinition {
     GetObjectInstance(service: ExchangeService, xmlElementName: string): Item;
     ReadElementsFromXmlJsObject(responseObject: any, service: ExchangeService): void;
 }
+
 /**
- * Represents the GetNonIndexableItemDetails response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class GetNonIndexableItemDetailsResponse extends ServiceResponse {
-    /**
-     * Non indexable item result
-     *
-     * internal set
-     */
     NonIndexableItemsResult: NonIndexableItemDetailsResult;
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
+
 /**
- * Represents the GetNonIndexableItemStatistics response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class GetNonIndexableItemStatisticsResponse extends ServiceResponse {
-    /**
-     * List of non indexable statistic
-     */
     NonIndexableStatistics: NonIndexableItemStatistic[];
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 
  class GetPasswordExpirationDateResponse extends ServiceResponse {
@@ -15134,22 +13979,15 @@ export interface IIndexedPropertyDefinition {
 
     ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
-
 /**
- * Represents the GetSearchableMailboxes response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class GetSearchableMailboxesResponse extends ServiceResponse {
-
-    /**
-     * Searchable mailboxes result
-     */
-    readonly SearchableMailboxes: SearchableMailbox[];
-    /**
-     * Failed mailboxes
-     */
+    SearchableMailboxes: SearchableMailbox[];
     FailedMailboxes: FailedSearchMailbox[];
+
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 /**
  * ## *Not Implemented*
@@ -15157,6 +13995,16 @@ export interface IIndexedPropertyDefinition {
  class GetServerTimeZonesResponse extends ServiceResponse {
     TimeZones: any[];
 
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
+}
+
+/**
+ * ## *Not Implemented*
+ */
+ class GetUserConfigurationResponse extends ServiceResponse {
+    UserConfiguration: UserConfiguration;
+
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
     ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 /**
@@ -15216,18 +14064,15 @@ export interface IIndexedPropertyDefinition {
     InternalThrowIfNecessary(): void;
     ReadElementsFromXmlJsObject(responseObject: any, service: ExchangeService): void;
 }
+
 /**
- * Represents the SearchMailboxes response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class SearchMailboxesResponse extends ServiceResponse {
-
-    /**
-     * Search mailboxes result
-     */
-    /**@internal set*/
     SearchResult: SearchMailboxesResult;
+
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 /**
  * Represents the standard response to an Exchange Web Services operation.
@@ -15288,17 +14133,15 @@ export interface IIndexedPropertyDefinition {
  */
  class SetEncryptionConfigurationResponse extends ServiceResponse {
 }
+
 /**
- * Represents the SetHoldOnMailboxes response.
- *
- * @sealed
+ * ## *Not Implemented*
  */
  class SetHoldOnMailboxesResponse extends ServiceResponse {
+    HoldResult: MailboxHoldResult;
 
-    /**
-     * Mailbox hold result
-     */
-    readonly HoldResult: MailboxHoldResult;
+    ReadElementsFromJson(responseObject: JsonObject, service: ExchangeService): any;
+    ReadElementsFromXmlJsObject(reader: EwsServiceXmlReader): any;
 }
 
  class SuggestionsResponse extends ServiceResponse {
@@ -19146,7 +17989,8 @@ export interface ISearchFilterCollection {
      * @return  {IPromise<Task>}            A Task object representing the completed occurrence if the task is recurring and the update marks it as completed; or a Task object representing the current occurrence if the task is recurring and the uypdate changed its recurrence pattern; or null in every other case    :Promise.
      */
     Update(conflictResolutionMode: ConflictResolutionMode): IPromise<Task>;
-    Update(conflictResolutionMode: ConflictResolutionMode): IPromise<void>;
+    /** @internal ~~ workaround 52 */
+    Update(conflictResolutionMode: ConflictResolutionMode): IPromise<any>;
 }
 
 /**

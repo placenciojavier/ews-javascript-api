@@ -1,27 +1,58 @@
 {
-  "name": "ews-javascript-api",
-  "version": "0.8.0",
-  "description": "EWS Managed api in JavaScript",
-  "main": "js/ExchangeWebService.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gautamsi/ews-javascript-api.git"
-  },
-  "keywords": [
-    "ews",
-    "ews javascript api",
-    "ews-javascript-api",
-    "exchange web service"
+  "_args": [
+    [
+      {
+        "raw": "ews-javascript-api@^0.6.0",
+        "scope": null,
+        "escapedName": "ews-javascript-api",
+        "name": "ews-javascript-api",
+        "rawSpec": "^0.6.0",
+        "spec": ">=0.6.0 <0.7.0",
+        "type": "range"
+      },
+      "/Users/javierplacencio/Documents/workspace/hiq/eqt/skype-google-sync"
+    ]
   ],
-  "author": "Gautam Singh (gautamsi)",
-  "license": "MIT",
+  "_from": "ews-javascript-api@>=0.6.0 <0.7.0",
+  "_id": "ews-javascript-api@0.6.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/ews-javascript-api",
+  "_nodeVersion": "5.10.0",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/ews-javascript-api-0.6.2.tgz_1478209824121_0.49241427541710436"
+  },
+  "_npmUser": {
+    "name": "gautamsi",
+    "email": "gsgit@gs4.in"
+  },
+  "_npmVersion": "3.8.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ews-javascript-api@^0.6.0",
+    "scope": null,
+    "escapedName": "ews-javascript-api",
+    "name": "ews-javascript-api",
+    "rawSpec": "^0.6.0",
+    "spec": ">=0.6.0 <0.7.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ews-javascript-api/-/ews-javascript-api-0.6.2.tgz",
+  "_shasum": "d02d9138e22642c9522b75a69b8824b38a5c78c7",
+  "_shrinkwrap": null,
+  "_spec": "ews-javascript-api@^0.6.0",
+  "_where": "/Users/javierplacencio/Documents/workspace/hiq/eqt/skype-google-sync",
+  "author": {
+    "name": "Gautam Singh",
+    "url": "gautamsi"
+  },
   "bugs": {
     "url": "https://github.com/gautamsi/ews-javascript-api/issues"
   },
-  "homepage": "https://github.com/gautamsi/ews-javascript-api",
   "dependencies": {
     "@types/moment-timezone": "^0.2.32",
     "@types/node": "^6.0.46",
@@ -36,6 +67,7 @@
     "winjs-node": "^0.2.0",
     "xmldom": "^0.1.22"
   },
+  "description": "EWS Managed api in JavaScript",
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/chai-as-promised": "0.0.29",
@@ -65,5 +97,36 @@
     "typedoc": "^0.5.1",
     "typescript": "^2.0.6",
     "yargs": "^6.3.0"
-  }
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "d02d9138e22642c9522b75a69b8824b38a5c78c7",
+    "tarball": "https://registry.npmjs.org/ews-javascript-api/-/ews-javascript-api-0.6.2.tgz"
+  },
+  "homepage": "https://github.com/gautamsi/ews-javascript-api",
+  "keywords": [
+    "ews",
+    "ews javascript api",
+    "ews-javascript-api",
+    "exchange web service"
+  ],
+  "license": "MIT",
+  "main": "js/ExchangeWebService.js",
+  "maintainers": [
+    {
+      "name": "gautamsi",
+      "email": "gsgit@gs4.in"
+    }
+  ],
+  "name": "ews-javascript-api",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gautamsi/ews-javascript-api.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.6.2"
 }
